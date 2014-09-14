@@ -1,8 +1,10 @@
 # Data Dictionary #
 
 subject Integer
+
 	The subject ID of the collected data.
-		1..30 .Unique identifier assigned for each subject  
+
+		1..30 .Unique identifier assigned for each subject
 
 activity Factor
 	The type of activity performed when the measurement was performed
