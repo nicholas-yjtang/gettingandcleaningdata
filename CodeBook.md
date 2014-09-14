@@ -7,7 +7,9 @@ subject Integer
 		1..30 .Unique identifier assigned for each subject
 
 activity Factor
+
 	The type of activity performed when the measurement was performed
+
 		1. WALKING
 		2. WALKING_UPSTAIRS
 		3. WALKING_DOWNSTAIRS
