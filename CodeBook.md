@@ -1,4 +1,4 @@
-* Data Dictionary *
+# Data Dictionary #
 
 subject Integer
     The subject ID of the collected data.
