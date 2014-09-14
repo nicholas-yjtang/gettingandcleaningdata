@@ -1,17 +1,17 @@
 # Data Dictionary #
 
-subject Integer  
-	The subject ID of the collected data.  
+subject Integer
+	The subject ID of the collected data.
 		1..30 .Unique identifier assigned for each subject  
-  
-activity Factor  
-	The type of activity performed when the measurement was performed  
-		1. WALKING  
-		2. WALKING_UPSTAIRS  
-		3. WALKING_DOWNSTAIRS  
-		4. SITTING  
-		5. STANDING  
-		6. LAYING  
+
+activity Factor
+	The type of activity performed when the measurement was performed
+		1. WALKING
+		2. WALKING_UPSTAIRS
+		3. WALKING_DOWNSTAIRS
+		4. SITTING
+		5. STANDING
+		6. LAYING
 
 subject Numeric  
  	The mean of the collected subject per subject/activity pair  
