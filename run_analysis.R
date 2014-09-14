@@ -94,20 +94,25 @@ read_data <- function (filelocation,features,data_directory="./data/UCI HAR Data
   #first recreate the path to the 3 important files, namely
   #x_filelocation, the location to the X_[test/train].txt data
   #subjects_filelocation, the location to the subject_[test/train].txt
-  #activity_filelocation, the location to the y_[test/train].txt
+  #activity_filelocation, the location to the y_[test/train].txt  
   x_filelocation <- paste(data_directory, filelocation, paste("X_", filelocation,".txt",sep="") ,sep="/")
   subjects_filelocation <- paste(data_directory, filelocation,paste("subject_", filelocation, ".txt",sep="") ,sep="/")
   activity_filelocation <- paste(data_directory, filelocation, paste("y_", filelocation, ".txt",sep=""), sep="/")  
 
   #a few things to note in this section
-  #using LaF and ffbase, mainly due to speed issues
+  #firstly we are not going to include the inertia data, although it is a trivial exercise to do so,
+  #mainly because these columns do not have names, and we are finally only interested in the mean() and std() of
+  #the observations
+  #secondly, we will be using LaF and ffbase, mainly due to speed issues
   #the original fwf code would have been the one below, which would have been very slow and difficult under testing situations
   #df <- read.fwf(x_test_location, widths=rep(16,561), colClasses=c("numeric"))
+
   #the column widths are calculated as 16, and repeated for 561 times, which is the total number of features that exists in the features.txt file
   #the column types are all numeric, laf does not automatically repeat the sequence, so we have to create the repetition explicitly
   laf.df <- laf_open_fwf(x_filelocation, column_widths=rep(16,561),column_types = rep("numeric",561))
   ffdf.df <- laf_to_ffdf(laf.df)
   df <- as.data.frame(ffdf.df)
+  close(laf.df)
 
   #although the sequence (according to the instructions) was to select the features first, before adding the labels
   #there is no harm to do it at this point, and it will make our life easier later when we want to select the columns we are interested in  
@@ -131,6 +136,7 @@ read_data <- function (filelocation,features,data_directory="./data/UCI HAR Data
 #should this operation fail (for whatever reasons)
 #ensure that you download the getdata-projectfiles-UCI HAR Dataset.zip
 #and unzip into a folder called ./data under your working folder
+#and comment out the below code
 get_data("./data/getdata-projectfiles-UCI-HAR-Dataset.zip","https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip")
 
 #these are some fixed values to the location of the features, activity_labels, and the root data directory path
@@ -162,8 +168,10 @@ merged_data <- do.call("rbind", split_datas)
 #argued as indeed being a mean in the question, we prefer to believe that
 #the mean and std are the features with mean() and std() in their names, 
 #for each measurement (tBodyAcc-XYZ, tGravityAcc-XYZ etc)
-#we use regular expression to find these columns of interest (and also the reason why we prefer to add the column names first, over selecting first)
+#for completition sake, the code that would have taken the meanFreq, along with the special features using angle and mean
+#of certain variables have been included in the next line (but commented out)
 #interested_df <- merged_data[,grep(".*([Mm]ean\\(\\))|(std\\(\\))|(subject)|(activity).*", colnames(merged_data))]
+#we use regular expression to find these columns of interest (and also the reason why we prefer to add the column names first, over selecting first)
 interested_df <- merged_data[,grep(".*(mean\\(\\))|(std\\(\\))|(subject)|(activity).*", colnames(merged_data))]
 
 #since the activity labels need to be converted
