@@ -28,7 +28,8 @@ source("./run_analysis.R")
 
 # Theory of Operation #
 
-We describe below the steps taken to get a tidy data set at the end
+We describe below the steps taken to get a tidy data set at the end. At the end we will have the narrow form of the table.
+See http://vita.had.co.nz/papers/tidy-data.pdf for details
 
 1. Download the data over the internet, and place it in the data directory
 2. Unzip this data
@@ -44,6 +45,9 @@ We describe below the steps taken to get a tidy data set at the end
 12. Factorise the activity column, using the levels (in numbers) mapped to the activity name
 13. Perform a melt, with the id being the subject and activity
 14. We use dcast to create a new dataframe that sums each type of measurement by the subject and activity pair
-15. Finally give the columns a better name since we have now changed the meaning of the original columns. It will now be mean-XXX where XXX is the original measurement
-16. Write the data out to a txt file
+15. Give the columns a better name since we have now changed the meaning of the original columns. It will now be mean-XXX where XXX is the original measurement
+16. Melt the data once again. This time we just want the narrow form of the data
+17. Replace the variable and value headers with "measurement" and "mean"
+18. Sort the data in the order of subject first, activity second
+19. Write the data out to a txt file
 

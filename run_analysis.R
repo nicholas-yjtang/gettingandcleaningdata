@@ -168,9 +168,13 @@ df_melt <- melt(interested_df, id=c("subject", "activity"))
 #then perform the mean operation on the vector of results from each variable that is distinct
 final_df <- dcast(df_melt, subject + activity ~ variable, mean)
 
-#before finalizing the data, we need to change the final column names to something more meaningful, to indicate
-#this is the mean of measurements rather than just the measurement itself
-colnames(final_df) <- gsub("^(.*((mean)|(std)).*)", "mean-\\1", colnames(final_df))
-
+#melt the data once more. we want to keep the narrow form of the data
+#replace the 2 columns, variable and value, with something more meaningful, like "measurement" and "mean"
+#order it with the subject first, and activity second
+tidy_data <- melt(final_df, id=c("subject", "activity"))
+colnames(tidy_data) <- gsub("^variable$" ,"measurement", colnames(tidy_data))
+colnames(tidy_data) <- gsub("^value$" ,"mean", colnames(tidy_data))
+tidy_data <- tidy_data[order(tidy_data$subject, tidy_data$activity),]
+  
 #the end step, to write the output format into a text
-write.table(final_df, file="final_output.txt", row.names=FALSE)
+write.table(tidy_data, file="final_output.txt", row.names=FALSE)
