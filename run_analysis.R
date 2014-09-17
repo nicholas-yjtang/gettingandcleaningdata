@@ -168,7 +168,7 @@ merged_data <- do.call("rbind", split_datas)
 #argued as indeed being a mean in the question, we prefer to believe that
 #the mean and std are the features with mean() and std() in their names, 
 #for each measurement (tBodyAcc-XYZ, tGravityAcc-XYZ etc)
-#for completition sake, the code that would have taken the meanFreq, along with the special features using angle and mean
+#for completion sake, the code that would have taken the meanFreq, along with the special features using angle and mean
 #of certain variables have been included in the next line (but commented out)
 #interested_df <- merged_data[,grep(".*([Mm]ean\\(\\))|(std\\(\\))|(subject)|(activity).*", colnames(merged_data))]
 #we use regular expression to find these columns of interest (and also the reason why we prefer to add the column names first, over selecting first)
@@ -191,6 +191,10 @@ df_melt <- melt(interested_df, id=c("subject", "activity"))
 #finally do the dcast, with the subject and each activity
 #then perform the mean operation on the vector of results from each variable that is distinct
 final_df <- dcast(df_melt, subject + activity ~ variable, mean)
+
+#before finalizing the data, we need to change the final column names to something more meaningful, to indicate
+#this is the mean of measurements rather than just the measurement itself
+colnames(final_df) <- gsub("^(.*((mean)|(std)).*)", "mean-\\1", colnames(final_df))
 
 #the end step, to write the output format into a text
 write.table(final_df, file="final_output.txt", row.names=FALSE)
