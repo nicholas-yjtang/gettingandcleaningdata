@@ -1,3 +1,15 @@
+# Overview #
+
+We describe the data (and the variables) that were kept from the original UCI HAR Dataset (last known location at https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
+
+In the original dataset, there were 561 features described. Of all them, we have used 66 variables that describe the mean and standard deviation of interest to us
+
+The first column, is the subject that the data was obtained from subjects.txt. This contains the ID of the subject
+
+The second column is the activity that was performed when the data was obtained. This was obtained from the y_[train/test].txt, and subsequently relabelled with the activitylabels.txt as a map. The final result is a factor of 6 different levels describing the activity
+
+The rest of the columns, are the 66 variables we selected, which describes the mean of the normalized values of the measurement taken for each subject/activity pair.
+
 # Data Dictionary #
 
 	subject Integer
@@ -17,410 +29,400 @@
 			5. STANDING
 			6. LAYING
 
-	subject Numeric
-
-		The mean of the collected subject per subject/activity pair
-
-			-1 to 1 .The normalized value mean for each subject/activity pair
-
-	activity Numeric
-
-		The mean of the collected activity per subject/activity pair
-
-			-1 to 1 .The normalized value mean for each subject/activity pair
-
-	tBodyAcc-mean()-X Numeric
+	mean-tBodyAcc-mean()-X Numeric
 
 		The mean of the collected tBodyAcc-mean()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAcc-mean()-Y Numeric
+	mean-tBodyAcc-mean()-Y Numeric
 
 		The mean of the collected tBodyAcc-mean()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAcc-mean()-Z Numeric
+	mean-tBodyAcc-mean()-Z Numeric
 
 		The mean of the collected tBodyAcc-mean()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAcc-std()-X Numeric
+	mean-tBodyAcc-std()-X Numeric
 
 		The mean of the collected tBodyAcc-std()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAcc-std()-Y Numeric
+	mean-tBodyAcc-std()-Y Numeric
 
 		The mean of the collected tBodyAcc-std()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAcc-std()-Z Numeric
+	mean-tBodyAcc-std()-Z Numeric
 
 		The mean of the collected tBodyAcc-std()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tGravityAcc-mean()-X Numeric
+	mean-tGravityAcc-mean()-X Numeric
 
 		The mean of the collected tGravityAcc-mean()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tGravityAcc-mean()-Y Numeric
+	mean-tGravityAcc-mean()-Y Numeric
 
 		The mean of the collected tGravityAcc-mean()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tGravityAcc-mean()-Z Numeric
+	mean-tGravityAcc-mean()-Z Numeric
 
 		The mean of the collected tGravityAcc-mean()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tGravityAcc-std()-X Numeric
+	mean-tGravityAcc-std()-X Numeric
 
 		The mean of the collected tGravityAcc-std()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tGravityAcc-std()-Y Numeric
+	mean-tGravityAcc-std()-Y Numeric
 
 		The mean of the collected tGravityAcc-std()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tGravityAcc-std()-Z Numeric
+	mean-tGravityAcc-std()-Z Numeric
 
 		The mean of the collected tGravityAcc-std()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccJerk-mean()-X Numeric
+	mean-tBodyAccJerk-mean()-X Numeric
 
 		The mean of the collected tBodyAccJerk-mean()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccJerk-mean()-Y Numeric
+	mean-tBodyAccJerk-mean()-Y Numeric
 
 		The mean of the collected tBodyAccJerk-mean()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccJerk-mean()-Z Numeric
+	mean-tBodyAccJerk-mean()-Z Numeric
 
 		The mean of the collected tBodyAccJerk-mean()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccJerk-std()-X Numeric
+	mean-tBodyAccJerk-std()-X Numeric
 
 		The mean of the collected tBodyAccJerk-std()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccJerk-std()-Y Numeric
+	mean-tBodyAccJerk-std()-Y Numeric
 
 		The mean of the collected tBodyAccJerk-std()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccJerk-std()-Z Numeric
+	mean-tBodyAccJerk-std()-Z Numeric
 
 		The mean of the collected tBodyAccJerk-std()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyro-mean()-X Numeric
+	mean-tBodyGyro-mean()-X Numeric
 
 		The mean of the collected tBodyGyro-mean()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyro-mean()-Y Numeric
+	mean-tBodyGyro-mean()-Y Numeric
 
 		The mean of the collected tBodyGyro-mean()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyro-mean()-Z Numeric
+	mean-tBodyGyro-mean()-Z Numeric
 
 		The mean of the collected tBodyGyro-mean()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyro-std()-X Numeric
+	mean-tBodyGyro-std()-X Numeric
 
 		The mean of the collected tBodyGyro-std()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyro-std()-Y Numeric
+	mean-tBodyGyro-std()-Y Numeric
 
 		The mean of the collected tBodyGyro-std()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyro-std()-Z Numeric
+	mean-tBodyGyro-std()-Z Numeric
 
 		The mean of the collected tBodyGyro-std()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroJerk-mean()-X Numeric
+	mean-tBodyGyroJerk-mean()-X Numeric
 
 		The mean of the collected tBodyGyroJerk-mean()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroJerk-mean()-Y Numeric
+	mean-tBodyGyroJerk-mean()-Y Numeric
 
 		The mean of the collected tBodyGyroJerk-mean()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroJerk-mean()-Z Numeric
+	mean-tBodyGyroJerk-mean()-Z Numeric
 
 		The mean of the collected tBodyGyroJerk-mean()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroJerk-std()-X Numeric
+	mean-tBodyGyroJerk-std()-X Numeric
 
 		The mean of the collected tBodyGyroJerk-std()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroJerk-std()-Y Numeric
+	mean-tBodyGyroJerk-std()-Y Numeric
 
 		The mean of the collected tBodyGyroJerk-std()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroJerk-std()-Z Numeric
+	mean-tBodyGyroJerk-std()-Z Numeric
 
 		The mean of the collected tBodyGyroJerk-std()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccMag-mean() Numeric
+	mean-tBodyAccMag-mean() Numeric
 
 		The mean of the collected tBodyAccMag-mean() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccMag-std() Numeric
+	mean-tBodyAccMag-std() Numeric
 
 		The mean of the collected tBodyAccMag-std() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tGravityAccMag-mean() Numeric
+	mean-tGravityAccMag-mean() Numeric
 
 		The mean of the collected tGravityAccMag-mean() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tGravityAccMag-std() Numeric
+	mean-tGravityAccMag-std() Numeric
 
 		The mean of the collected tGravityAccMag-std() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccJerkMag-mean() Numeric
+	mean-tBodyAccJerkMag-mean() Numeric
 
 		The mean of the collected tBodyAccJerkMag-mean() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyAccJerkMag-std() Numeric
+	mean-tBodyAccJerkMag-std() Numeric
 
 		The mean of the collected tBodyAccJerkMag-std() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroMag-mean() Numeric
+	mean-tBodyGyroMag-mean() Numeric
 
 		The mean of the collected tBodyGyroMag-mean() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroMag-std() Numeric
+	mean-tBodyGyroMag-std() Numeric
 
 		The mean of the collected tBodyGyroMag-std() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroJerkMag-mean() Numeric
+	mean-tBodyGyroJerkMag-mean() Numeric
 
 		The mean of the collected tBodyGyroJerkMag-mean() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	tBodyGyroJerkMag-std() Numeric
+	mean-tBodyGyroJerkMag-std() Numeric
 
 		The mean of the collected tBodyGyroJerkMag-std() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAcc-mean()-X Numeric
+	mean-fBodyAcc-mean()-X Numeric
 
 		The mean of the collected fBodyAcc-mean()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAcc-mean()-Y Numeric
+	mean-fBodyAcc-mean()-Y Numeric
 
 		The mean of the collected fBodyAcc-mean()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAcc-mean()-Z Numeric
+	mean-fBodyAcc-mean()-Z Numeric
 
 		The mean of the collected fBodyAcc-mean()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAcc-std()-X Numeric
+	mean-fBodyAcc-std()-X Numeric
 
 		The mean of the collected fBodyAcc-std()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAcc-std()-Y Numeric
+	mean-fBodyAcc-std()-Y Numeric
 
 		The mean of the collected fBodyAcc-std()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAcc-std()-Z Numeric
+	mean-fBodyAcc-std()-Z Numeric
 
 		The mean of the collected fBodyAcc-std()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAccJerk-mean()-X Numeric
+	mean-fBodyAccJerk-mean()-X Numeric
 
 		The mean of the collected fBodyAccJerk-mean()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAccJerk-mean()-Y Numeric
+	mean-fBodyAccJerk-mean()-Y Numeric
 
 		The mean of the collected fBodyAccJerk-mean()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAccJerk-mean()-Z Numeric
+	mean-fBodyAccJerk-mean()-Z Numeric
 
 		The mean of the collected fBodyAccJerk-mean()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAccJerk-std()-X Numeric
+	mean-fBodyAccJerk-std()-X Numeric
 
 		The mean of the collected fBodyAccJerk-std()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAccJerk-std()-Y Numeric
+	mean-fBodyAccJerk-std()-Y Numeric
 
 		The mean of the collected fBodyAccJerk-std()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAccJerk-std()-Z Numeric
+	mean-fBodyAccJerk-std()-Z Numeric
 
 		The mean of the collected fBodyAccJerk-std()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyGyro-mean()-X Numeric
+	mean-fBodyGyro-mean()-X Numeric
 
 		The mean of the collected fBodyGyro-mean()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyGyro-mean()-Y Numeric
+	mean-fBodyGyro-mean()-Y Numeric
 
 		The mean of the collected fBodyGyro-mean()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyGyro-mean()-Z Numeric
+	mean-fBodyGyro-mean()-Z Numeric
 
 		The mean of the collected fBodyGyro-mean()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyGyro-std()-X Numeric
+	mean-fBodyGyro-std()-X Numeric
 
 		The mean of the collected fBodyGyro-std()-X per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyGyro-std()-Y Numeric
+	mean-fBodyGyro-std()-Y Numeric
 
 		The mean of the collected fBodyGyro-std()-Y per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyGyro-std()-Z Numeric
+	mean-fBodyGyro-std()-Z Numeric
 
 		The mean of the collected fBodyGyro-std()-Z per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAccMag-mean() Numeric
+	mean-fBodyAccMag-mean() Numeric
 
 		The mean of the collected fBodyAccMag-mean() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyAccMag-std() Numeric
+	mean-fBodyAccMag-std() Numeric
 
 		The mean of the collected fBodyAccMag-std() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyBodyAccJerkMag-mean() Numeric
+	mean-fBodyBodyAccJerkMag-mean() Numeric
 
 		The mean of the collected fBodyBodyAccJerkMag-mean() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyBodyAccJerkMag-std() Numeric
+	mean-fBodyBodyAccJerkMag-std() Numeric
 
 		The mean of the collected fBodyBodyAccJerkMag-std() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyBodyGyroMag-mean() Numeric
+	mean-fBodyBodyGyroMag-mean() Numeric
 
 		The mean of the collected fBodyBodyGyroMag-mean() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyBodyGyroMag-std() Numeric
+	mean-fBodyBodyGyroMag-std() Numeric
 
 		The mean of the collected fBodyBodyGyroMag-std() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyBodyGyroJerkMag-mean() Numeric
+	mean-fBodyBodyGyroJerkMag-mean() Numeric
 
 		The mean of the collected fBodyBodyGyroJerkMag-mean() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
 
-	fBodyBodyGyroJerkMag-std() Numeric
+	mean-fBodyBodyGyroJerkMag-std() Numeric
 
 		The mean of the collected fBodyBodyGyroJerkMag-std() per subject/activity pair
 
-			-1 to 1 .The normalized value mean for each subject/activity pair
+			-1 to 1 .The mean of the normalized values for each subject/activity pair
+
+
