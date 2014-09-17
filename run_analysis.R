@@ -169,6 +169,7 @@ df_melt <- melt(interested_df, id=c("subject", "activity"))
 final_df <- dcast(df_melt, subject + activity ~ variable, mean)
 
 #melt the data once more. we want to keep the narrow form of the data
+#since the columns are essentially values of the type of measurement used
 #replace the 2 columns, variable and value, with something more meaningful, like "measurement" and "mean"
 #order it with the subject first, and activity second
 tidy_data <- melt(final_df, id=c("subject", "activity"))

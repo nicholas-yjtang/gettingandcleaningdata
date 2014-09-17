@@ -33,7 +33,7 @@ The 4th column describes the mean of the measurements in column 3
 
 	measurement Factor
 
-		The measurement collected
+		The type of measurement collected
 
 			1. tBodyAcc-mean()-X
 			2. tBodyAcc-mean()-Y
