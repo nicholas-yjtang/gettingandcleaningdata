@@ -25,3 +25,25 @@ install.packages("RCurl")
 ```
 source("./run_analysis.R")
 ```
+
+# Theory of Operation #
+
+We describe below the steps taken to get a tidy data set at the end
+
+1. Download the data over the internet, and place it in the data directory
+2. Unzip this data
+3. Open the features.txt and set it into a data.frame
+4. Open the test set txt file using LaF and ffdf to convert to a data frame
+5. Set the column names of test data frame the with the features data frame
+6. Open the subject table and the activity table
+7. Join the column into the test set dataframe
+8. Repeat 4 to 7 using the train txt file (we use lapply for these operations)
+9. Merge the 2 data.frames using rbind
+10. Now we subset the mean/std deviation columns data from the measurements. We take a strict view of this and only look for mean() and std()
+11. With only the interested columns, we now read in the activity labels, mapping it to level and activity_name
+12. Factorise the activity column, using the levels (in numbers) mapped to the activity name
+13. Perform a melt, with the id being the subject and activity
+14. We use dcast to create a new dataframe that sums each type of measurement by the subject and activity pair
+15. Finally give the columns a better name since we have now changed the meaning of the original columns. It will now be mean-XXX where XXX is the original measurement
+16. Write the data out to a txt file
+

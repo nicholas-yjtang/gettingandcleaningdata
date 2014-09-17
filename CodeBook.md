@@ -8,7 +8,7 @@ The first column, is the subject that the data was obtained from subjects.txt. T
 
 The second column is the activity that was performed when the data was obtained. This was obtained from the y_[train/test].txt, and subsequently relabelled with the activitylabels.txt as a map. The final result is a factor of 6 different levels describing the activity
 
-The rest of the columns, are the 66 variables we selected, which describes the mean of the normalized values of the measurement taken for each subject/activity pair.
+The rest of the columns, are the 66 variables we selected, which describes the mean of the normalized values of the measurement taken for each subject/activity pair. The meaning of the original measurements remain the same (eg tBodyAcc-mean()-X, tBodyAcc-mean()-Y, etc). 
 
 # Data Dictionary #
 
