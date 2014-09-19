@@ -6,8 +6,8 @@ library(RCurl)
 #=============================================================
 # @author Nicholas Tang
 # the read data function
-# @filename the target file we wise to write to 
-# @url the url of the location of the original file
+# @param filename the target file we wise to write to 
+# @param url the url of the location of the original file
 #==============================================================
 
 get_data <- function(filename, url) { 
@@ -26,8 +26,8 @@ get_data <- function(filename, url) {
 
 #=======================================================
 # Function to download the file
-# @destination the location of the file to download to
-# @fileUrl the location of the file to download from 
+# @param destination the location of the file to download to
+# @param fileUrl the location of the file to download from 
 #========================================================
 download_file <- function (destination, fileUrl) {  
   #set the directory name and filename first
@@ -59,9 +59,9 @@ download_file <- function (destination, fileUrl) {
 
 #=======================================================
 # Function read the data for each file location
-# @filelocation the location of either the training/test data
-# @features the data.frame that contains the names of all the features
-# @data_directory the path to the location where all of the data is located.
+# @param filelocation the location of either the training/test data
+# @param features the data.frame that contains the names of all the features
+# @param data_directory the path to the location where all of the data is located.
 #		  the default is already defined as "./data/UCI HAR Dataset"
 #========================================================
 
@@ -107,75 +107,172 @@ read_data <- function (filelocation,features,data_directory="./data/UCI HAR Data
   df
 }
 
-#attempts to download the file before we start
-#ensure that you have internet access before you perform this operation
-#should this operation fail (for whatever reasons)
-#ensure that you download the getdata-projectfiles-UCI HAR Dataset.zip
-#and unzip into a folder called ./data under your working folder
-#and comment out the below code
-get_data("./data/getdata-projectfiles-UCI-HAR-Dataset.zip","https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip")
+#===============================================================
+# Performs step1
+# Merges the training and the test sets to create one data set.
+# Returns a data.frame containing the merged data (of test and training)
+#===============================================================
 
-#these are some fixed values to the location of the features, activity_labels, and the root data directory path
-features_filelocation <- "./data/UCI HAR Dataset/features.txt"
-activitylabels_filelocation <- "./data/UCI HAR Dataset/activity_labels.txt"
-data_directory <- "./data/UCI HAR Dataset"
+step1 <- function() { 
+  
+  #attempts to download the file before we start
+  #ensure that you have internet access before you perform this operation
+  #should this operation fail (for whatever reasons)
+  #ensure that you download the getdata-projectfiles-UCI HAR Dataset.zip
+  #and unzip into a folder called ./data under your working folder
+  #and comment out the below code
+  get_data("./data/getdata-projectfiles-UCI-HAR-Dataset.zip","https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip")
 
-#the two datasets, are located under the test and train folders
-#we create a vector of these two names for later use
-filelocations <- c("test", "train")
+  #these are some fixed values to the location of the features, activity_labels, and the root data directory path
+  features_filelocation <- "./data/UCI HAR Dataset/features.txt"
+  data_directory <- "./data/UCI HAR Dataset"
 
-#we read in the features list into a data.frame
-#we provide some column names for features, so that it will be easier to manipulate and call for the respective columns
-#rather than using the default V[column_number]
-features <- read.table(features_filelocation, sep=" ", colClasses=c("numeric","character"), col.names=c("index","name"))
+  #the two datasets, are located under the test and train folders
+  #we create a vector of these two names for later use
+  filelocations <- c("test", "train")
+  
+  #we read in the features list into a data.frame
+  #we provide some column names for features, so that it will be easier to manipulate and call for the respective columns
+  #rather than using the default V[column_number]
+  features <- read.table(features_filelocation, sep=" ", colClasses=c("numeric","character"), col.names=c("index","name"))
+  
+  #rather than duplicating the call twice (since the reading of the data is esssentially the same)
+  #we use lapply instead, with our read_data function
+  #the read_data function is defined above
+  #this will produce a list of data.frames, which are the train and test data.frames
+  split_datas <- lapply(filelocations, read_data, features)  
 
-#rather than duplicating the call twice (since the reading of the data is esssentially the same)
-#we use lapply instead, with our read_data function
-#the read_data function is defined above
-#this will produce a list of data.frames, which are the train and test data.frames
-split_datas <- lapply(filelocations, read_data, features)
+  #we now do a rowbind to combine all the data together
+  #the below call will call rbind over the list split_datas
+  merged_data <- do.call("rbind", split_datas)
+  merged_data
+}
 
-#we now do a rowbind to combine all the data together
-#the below call will call rbind over the list split_datas
-merged_data <- do.call("rbind", split_datas)
+#===============================================================
+# Performs step2
+# Extracts only the measurements on the mean and standard deviation for each measurement. 
+# @param merged_data the merged data.frame that was obtianed from step1()
+# Returns a data.frame of interest to us
+#===============================================================
 
-#The project requests for the mean and standard deviation of each measurement
-#Although meanFreq() and the observations on angle() using certain observation means, could be
-#argued as indeed being a mean in the question, we prefer to believe that
-#the mean and std are the features with mean() and std() in their names, 
-#for each measurement (tBodyAcc-XYZ, tGravityAcc-XYZ etc)
-#for completion sake, the code that would have taken the meanFreq, along with the special features using angle and mean
-#of certain variables have been included in the next line (but commented out)
-#interested_df <- merged_data[,grep(".*([Mm]ean\\(\\))|(std\\(\\))|(subject)|(activity).*", colnames(merged_data))]
-#we use regular expression to find these columns of interest (and also the reason why we prefer to add the column names first, over selecting first)
-interested_df <- merged_data[,grep(".*(mean\\(\\))|(std\\(\\))|(subject)|(activity).*", colnames(merged_data))]
+step2 <- function(merged_data) {
 
-#since the activity labels need to be converted
-#we must load the activity labels into a data.frame for us to map
-#we give a column name, the level and the activity_name, for easy manipulation
-activitylabels <- read.table(activitylabels_filelocation, sep=" ", col.names=c("level", "activity_name"))
+  #The project requests for the mean and standard deviation of each measurement
+  #Although meanFreq() and the observations on angle() using certain observation means, could be
+  #argued as indeed being a mean in the question, we prefer to believe that
+  #the mean and std are the features with mean() and std() in their names, 
+  #for each measurement (tBodyAcc-XYZ, tGravityAcc-XYZ etc)
+  #for completion sake, the code that would have taken the meanFreq, along with the special features using angle and mean
+  #of certain variables have been included in the next line (but commented out)
+  #interested_df <- merged_data[,grep(".*([Mm]ean\\(\\))|(std\\(\\))|(subject)|(activity).*", colnames(merged_data))]
+  #we use regular expression to find these columns of interest (and also the reason why we prefer to add the column names first, over selecting first)
+  interested_df <- merged_data[,grep(".*(mean\\(\\))|(std\\(\\))|(subject)|(activity).*", colnames(merged_data))]  
+  interested_df
+}
 
-#we now factorise the activity column in our interested_df, with the names and levels as loaded previously
-interested_df$activity <- factor(interested_df$activity, levels=activitylabels$level, labels=activitylabels$activity_name)
+#===============================================================
+# Performs step3
+# Uses descriptive activity names to name the activities in the data set
+# @param interested_df the interested data.frame that was obtianed from step2()
+# Returns a data.frame that will now contain the activity names 
+#         as activities rather than numbers
+#===============================================================
 
-#almost the final step. the last part requires us to find the mean based on the
-#subject and the related activity
-#we will use reshape2 to help in this
-#first create the melted data.frame with the id being the subject and activity
-df_melt <- melt(interested_df, id=c("subject", "activity"))
+step3 <- function(interested_df) {
 
-#finally do the dcast, with the subject and each activity
-#then perform the mean operation on the vector of results from each variable that is distinct
-final_df <- dcast(df_melt, subject + activity ~ variable, mean)
+  activitylabels_filelocation <- "./data/UCI HAR Dataset/activity_labels.txt"  
+  #since the activity labels need to be converted
+  #we must load the activity labels into a data.frame for us to map
+  #we give a column name, the level and the activity_name, for easy manipulation
+  activitylabels <- read.table(activitylabels_filelocation, sep=" ", col.names=c("level", "activity_name"))
+  
+  #we now factorise the activity column in our interested_df, with the names and levels as loaded previously
+  interested_df$activity <- factor(interested_df$activity, levels=activitylabels$level, labels=activitylabels$activity_name)
+  interested_df
+}
 
-#melt the data once more. we want to keep the narrow form of the data
-#since the columns are essentially values of the type of measurement used
-#replace the 2 columns, variable and value, with something more meaningful, like "measurement" and "mean"
-#order it with the subject first, and activity second
-tidy_data <- melt(final_df, id=c("subject", "activity"))
-colnames(tidy_data) <- gsub("^variable$" ,"measurement", colnames(tidy_data))
-colnames(tidy_data) <- gsub("^value$" ,"mean", colnames(tidy_data))
-tidy_data <- tidy_data[order(tidy_data$subject, tidy_data$activity),]
+#===============================================================
+# Performs step4
+# Appropriately labels the data set with descriptive variable names.
+# @param interested_df the interested data.frame that was obtianed from step3()
+# Returns a data.frame that will now contain the proper variable names
+#===============================================================
+
+step4 <- function(interested_df) {
+  
+  #here, we are at step 4, we will clean up the names prior to melting the data (before creating the new tidy data)
+  #change the beginning t to Time for better indication the variable is related to time
+  colnames(interested_df) <- gsub("^t", "TimeOf", colnames(interested_df))
+  
+  #change the beginning f to Frequency, for better indication thta the variable is related to Frequency
+  colnames(interested_df) <- gsub("^f", "FrequencyOf", colnames(interested_df))
+  
+  #expand the Acc to Acceleration
+  colnames(interested_df) <- gsub("Acc", "Acceleration", colnames(interested_df))
+  
+  #expand the Gryo to AngularVelocity
+  colnames(interested_df) <- gsub("Gyro", "AngularVelocity", colnames(interested_df))
+  
+  #expand the shorted Mag to Magnitude
+  colnames(interested_df) <- gsub("Mag", "Magnitude", colnames(interested_df))
+  
+  #remove duplicate Body
+  colnames(interested_df) <- gsub("BodyBody", "Body", colnames(interested_df))
+  
+  #modify the mean function to indicate just Mean
+  colnames(interested_df) <- gsub("mean\\(\\)", "Mean", colnames(interested_df))
+  
+  #modify the std() function to just StandardDeviation
+  colnames(interested_df) <- gsub("std\\(\\)", "StandardDeviation", colnames(interested_df))
+  
+  #enhance the X,Y,Z indication with the word axis to make it easier it is an axis
+  colnames(interested_df) <- gsub("-X", "-OnXAxis", colnames(interested_df))
+  colnames(interested_df) <- gsub("-Y", "-OnYAxis", colnames(interested_df))
+  colnames(interested_df) <- gsub("-Z", "-OnZAxis", colnames(interested_df))  
+  interested_df    
+}
+
+#===============================================================
+# Performs step5
+# From the data set in step 4, creates a second, independent tidy data set with the average of each variable 
+# for each activity and each subject. 
+# @param interested_df the interested data.frame that was obtained from step4()
+# Returns a data.frame that is tidy
+#===============================================================
+
+step5 <- function(interested_df) {
+  
+  #almost the final step. the last part requires us to find the mean based on the
+  #subject and the related activity
+  #we will use reshape2 to help in this  
+  #first create the melted data.frame with the id being the subject and activity
+  df_melt <- melt(interested_df, id=c("subject", "activity"))
+  
+  #finally do the dcast, with the subject and each activity
+  #then perform the mean operation on the vector of results from each variable that is distinct
+  final_df <- dcast(df_melt, subject + activity ~ variable, mean)
+  
+  #melt the data once more. we want to keep the narrow form of the data
+  #since the columns are essentially values of the type of measurement used
+  #replace the 2 columns, variable and value, with something more meaningful, like "measurement" and "mean"
+  #order it with the subject first, and activity second
+  tidy_data <- melt(final_df, id=c("subject", "activity"))
+  colnames(tidy_data) <- gsub("^variable$" ,"measurement", colnames(tidy_data))
+  colnames(tidy_data) <- gsub("^value$" ,"mean", colnames(tidy_data))
+  #we do a little more tidying up, by ordering the factors of measurement to be in alphabetical order
+  tidy_data$measurement <- factor(as.character(tidy_data$measurement), ordered = TRUE)
+  #order the table more neatly
+  tidy_data <- tidy_data[order(tidy_data$subject, tidy_data$activity, tidy_data$measurement),]
+  tidy_data
+}
+
+#perform the operations according to the steps as highlighted in the assignment
+#from 1 to 5
+merged_data <- step1()
+interested_df <- step2(merged_data)
+interested_df <- step3(interested_df)
+interested_df <- step4(interested_df)
+tidy_data <- step5(interested_df)
   
 #the end step, to write the output format into a text
 write.table(tidy_data, file="final_output.txt", row.names=FALSE)
