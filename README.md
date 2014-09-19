@@ -1,12 +1,12 @@
 # Contents of project #
 
-  * run_analysis.R - The R script 
+  * run\_analysis.R - The R script 
   * README.md - This file you are reading now, with instructions on how the R file works
   * CodeBook.md - The file that describes the columns in the output text file created by run_analysis.R
 
 # Instructions on operating run_analysis.R #
 
-1. Make sure you have installed the following packages, as the run_analysis.R requires these in order to work correctly
+1. Make sure you have installed the following packages, as the run\_analysis.R requires these in order to work correctly
 	* ffbase
 	* LaF
 	* reshape2
