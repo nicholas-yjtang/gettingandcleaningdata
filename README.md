@@ -64,7 +64,7 @@ We describe below the steps taken to get a tidy data set at the end. At the end 
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
     1. Perform a melt, with the id being the subject and activity
     2. We use dcast to create a new dataframe that sums each type of measurement by the subject and activity pair
-    3. Notice that there are many columns, and all of these columns can be argued as a value (of the type of measurement). See http://vita.had.co.nz/papers/tidy-data.pdf that suggests tidy data are narrow in nature. 
+    3. Notice that there are many columns, and all of these columns can be argued as a value (of the type of measurement). See http://vita.had.co.nz/papers/tidy-data.pdf that suggests tidy data can be narrow. 
     4. Melt the data once again. This time we just want the narrow form of the data
     5. Replace the variable and value headers with "measurement" and "mean"
     6. Sort the factor for our new variable measurement
