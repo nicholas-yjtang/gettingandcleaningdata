@@ -8,18 +8,19 @@ The first column, is the subject that the data was obtained from subjects.txt. T
 
 The second column is the activity that was performed when the data was obtained. This was obtained from the y_[train/test].txt, and subsequently relabelled with the activitylabels.txt as a map. The final result is a factor of 6 different levels describing the activity
 
-The third column describes the measurements taken, of which there are 66 levels. The meaning of the original measurements remain the same as per the original UCI HAR Dataset. This was obtained through melting the data using the reshape2 package. Although the meaning is the same, we have transformed the names of the variables into the following ways
-	1. t[xxx] to TimeOf[xxx]. To indicate more clearly it is time
-	2. f[xxx] to FrequencyOf[xxx]. To indcate more clearly f refers to the frequency (achieved from FFT)
-	3. Acc to Acceleration. To indicate it is measuring acceleration (rather than from the accelerometer)
-	4. Gyro to AngularVelocity. To indicate it is measuring angular velocity (rather than from gyroscope)
-	5. Mag to Magnitude. To better indicate it is referring to Magnitude
-	6. BodyBody to Body. Remove the duplicate and redundant Body
-	7. mean() to Mean. To change the mean function to simply just Mean for easier understanding
-	8. std() to StandardDeviation. To change the standard deviation function to simply just StandardDeviation for better understanding
-	9. [xxx]-X, [xxx]-Y, [xxx]-Z to [xxx]-OnXAxis, [xxx]-OnYAxis, [xxx]-OnZAxis. To clearly indicate the X, Y Z refers to the measurements on the X, Y, Z axis
+The third column describes the measurements taken, of which there are 66 levels. The meaning of the original measurements remain the same as per the original UCI HAR Dataset. This was obtained through melting the data using the reshape2 package. Although the meaning is the same, we have transformed the names of the variables into the following ways.
 
-The 4th column describes the mean of the measurements in column 3. The name of the original
+    1. t[xxx] to TimeOf[xxx]. To indicate more clearly it is time
+    2. f[xxx] to FrequencyOf[xxx]. To indcate more clearly f refers to the frequency (achieved from FFT)
+    3. Acc to Acceleration. To indicate it is measuring acceleration (rather than from the accelerometer)
+    4. Gyro to AngularVelocity. To indicate it is measuring angular velocity (rather than from gyroscope)
+    5. Mag to Magnitude. To better indicate it is referring to Magnitude
+    6. BodyBody to Body. Remove the duplicate and redundant Body
+    7. mean() to Mean. To change the mean function to simply just Mean for easier understanding
+    8. std() to StandardDeviation. To change the standard deviation function to simply just StandardDeviation for better understanding
+    9. [xxx]-X, [xxx]-Y, [xxx]-Z to [xxx]-OnXAxis, [xxx]-OnYAxis, [xxx]-OnZAxis. To clearly indicate the X, Y Z refers to the measurements on the X, Y, Z axis
+
+The 4th column describes the mean of the measurements in column 3.
 
 # Data Dictionary #
 
